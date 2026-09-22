@@ -19,13 +19,15 @@ def index():
 @app.route("/next")
 def next_img():
     global current_index
-    current_index += 1
+    # 使用取餘數，讓索引在 0, 1, 2 之間循環
+    current_index = (current_index + 1) % len(images)
     return redirect(url_for("index"))
 
 @app.route("/prev")
 def prev_img():
     global current_index
-    current_index -= 1
+    # 使用取餘數，讓索引小於 0 時自動回到最後一張
+    current_index = (current_index - 1) % len(images)
     return redirect(url_for("index"))
 
 if __name__ == "__main__":
