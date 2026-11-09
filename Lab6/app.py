@@ -1,4 +1,8 @@
 import os
+
+import time
+import logging
+
 from functools import wraps
 
 from dotenv import load_dotenv
@@ -232,6 +236,10 @@ def api_chat():
         ] = interaction_id
 
         return jsonify({
+            "success": True,
+            "provider": "Google Gemini API",
+            "model": GEMINI_MODEL,
+            "interaction_id": interaction_id,
             "reply": reply
         })
 
